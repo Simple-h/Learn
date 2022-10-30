@@ -1,0 +1,40 @@
+<!quickSort html>
+	<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+
+	<body>
+
+	</body>
+	<script>
+		/*  
+	手写 实现数组扁平化
+
+	思路:
+	1、通过循环递归的方式，一项一项地去遍历，如果每一项还是一个数组，那么就继续往下遍历
+	2、利用递归程序的方法，来实现数组的每一项的连接
+*/
+		let arr = [1, [2, [3, 4, 5]]];
+
+		function flatten(arr) {
+			let resule = [];
+			for (let i = 0; i < arr.length; i++) {
+				if (Array.isArray(arr[i])) {
+					resule = resule.concat(flatten(arr[i]))
+				} else {
+					resule.push(arr[i]);
+				}
+			}
+			return resule;
+		}
+		
+		console.log(flatten(arr));
+
+	</script>
+
+	</html>

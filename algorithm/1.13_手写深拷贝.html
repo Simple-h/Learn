@@ -1,0 +1,71 @@
+<!quickSort html>
+	<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+
+	<body>
+
+	</body>
+	<script>
+		/*  
+	手写 深拷贝
+
+	思路:
+	1、
+*/
+		function copy(obj) {
+			if (obj instanceof Object) {
+				if (Array.isArray(obj)) {
+					let result = [];
+					obj.forEach(item => {
+						result.push(copy(item))
+					});
+					return result
+				} else {
+					let newObj = {};
+					for (const key in object) {
+						newObj[key] = copy(obj[key]);
+					}
+					return newObj;
+				}
+			}
+
+			return obj
+
+		}
+
+		function fn(obj) {
+			// 判断数据是否是复杂类型
+			if (obj instanceof Object) {
+				//判断数据是否是数组
+				if (Array.isArray(obj)) {
+					//声明一个空数组来接收拷贝后的数据
+					let result = []
+					obj.forEach(item => {
+						// 需要递归深层遍历，否则复制的是地址
+						result.push(fn(item))
+					})
+					// 返回输出这个数组,数组拷贝完成
+					return result
+				} else {
+					//如果是对象,就声明一个空对象来接收拷贝后的数据
+					let result = {}
+					for (let k in obj) {
+						// 使用递归深层遍历
+						result[k] = fn(obj[k])
+					}
+					// 返回输出这个对象,对象拷贝完成
+					return result
+				}
+			}
+			// 简单数据类型则直接返回输出
+			return obj
+		}
+	</script>
+
+	</html>
